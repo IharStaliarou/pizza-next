@@ -12,3 +12,4 @@ export * from './Filters/Filters';
 export * from './FiltersCheckbox/FiltersCheckbox';
 export * from './ProductCard/ProductCard';
 export * from './ProductsGroupList/ProductsGroupList';
+export * from './SearchInput/SearchInput';

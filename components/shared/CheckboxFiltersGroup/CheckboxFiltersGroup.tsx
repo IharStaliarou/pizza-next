@@ -7,7 +7,8 @@ import {
   FilterCheckbox,
   IFilterCheckboxProps,
 } from '../FiltersCheckbox/FiltersCheckbox';
-import { Input } from '@/components/ui';
+import { Input, Skeleton } from '@/components/ui';
+import { on } from 'events';
 
 type Item = IFilterCheckboxProps;
 
@@ -18,8 +19,11 @@ interface ICheckboxFiltersGroupProps {
   limit?: number;
   searchInputPlaceholder?: string;
   className?: string;
-  onChange?: (values: string[]) => void;
+  onClickCheckbox?: (id: string) => void;
   defaultValue?: string[];
+  loading?: boolean;
+  selected: Set<string>;
+  name?: string;
 }
 
 export const CheckboxFiltersGroup: React.FC<ICheckboxFiltersGroupProps> = ({
@@ -27,27 +31,38 @@ export const CheckboxFiltersGroup: React.FC<ICheckboxFiltersGroupProps> = ({
   items,
   defaultItems,
   limit = 5,
-  searchInputPlaceholder = 'Поиск...',
+  searchInputPlaceholder = 'Search...',
   className,
-  onChange,
-  defaultValue,
+  selected,
+  onClickCheckbox,
+  loading,
+  name,
 }) => {
   const [showAll, setShowAll] = React.useState(false);
-  const [selected, { add, toggle }] = useSet<string>(new Set([]));
+  const [searchValue, setSearchValue] = React.useState('');
 
-  const onCheckedChange = (value: string) => {
-    toggle(value);
+  if (loading) {
+    return (
+      <div className={className}>
+        <p className='font-bold mb-3'>{title}</p>
+
+        {...Array.from({ length: limit }, (_, index) => (
+          <Skeleton key={index} className='h-6 mb-4 rounded-[8px]' />
+        ))}
+        <Skeleton className='w-28 h-6 mb-4 rounded-[8px]' />
+      </div>
+    );
+  }
+
+  const list = showAll
+    ? items.filter((item) =>
+        item.text.toLowerCase().includes(searchValue.toLocaleLowerCase())
+      )
+    : (defaultItems || items).slice(0, limit);
+
+  const onChangeSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
   };
-
-  React.useEffect(() => {
-    if (defaultValue) {
-      defaultValue.forEach(add);
-    }
-  }, [defaultValue?.length]);
-
-  React.useEffect(() => {
-    onChange?.(Array.from(selected));
-  }, [selected]);
 
   return (
     <div className={className}>
@@ -56,6 +71,7 @@ export const CheckboxFiltersGroup: React.FC<ICheckboxFiltersGroupProps> = ({
       {showAll && (
         <div className='mb-5'>
           <Input
+            onChange={onChangeSearchInput}
             placeholder={searchInputPlaceholder}
             className='bg-gray-50 border-none'
           />
@@ -63,14 +79,15 @@ export const CheckboxFiltersGroup: React.FC<ICheckboxFiltersGroupProps> = ({
       )}
 
       <div className='flex flex-col gap-4 max-h-96 pr-2 overflow-auto scrollbar'>
-        {(showAll ? items : defaultItems || items).map((item) => (
+        {list.map((item) => (
           <FilterCheckbox
-            onCheckedChange={() => onCheckedChange(item.value)}
-            checked={selected.has(item.value)}
             key={String(item.value)}
             value={item.value}
             text={item.text}
             endAdornment={item.endAdornment}
+            checked={selected?.has(item.value)}
+            onCheckedChange={() => onClickCheckbox?.(item.value)}
+            name={name}
           />
         ))}
       </div>
