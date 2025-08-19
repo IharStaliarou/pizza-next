@@ -13,3 +13,8 @@ export * from './FiltersCheckbox/FiltersCheckbox';
 export * from './ProductCard/ProductCard';
 export * from './ProductsGroupList/ProductsGroupList';
 export * from './SearchInput/SearchInput';
+export * from './PizzaImage/PizzaImage';
+export * from './VariantsGroup/VariantsGroup';
+export * from './IngredientItem/IngredientItem';
+export * from './ProductForm/ProductForm';
+export * from './ChoosePizzaForm/ChoosePizzaForm';

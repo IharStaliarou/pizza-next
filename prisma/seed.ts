@@ -9,17 +9,17 @@ const randomDecimalNumber = (min: number, max: number) => {
 
 const generateProductItem = ({
   productId,
-  pizzaType,
+  doughType,
   size,
 }: {
   productId: number;
-  pizzaType?: 1 | 2;
+  doughType?: 1 | 2;
   size?: 20 | 30 | 40;
 }) => {
   return {
     productId,
     price: randomDecimalNumber(190, 600),
-    pizzaType,
+    doughType,
     size,
   } as Prisma.ProductItemUncheckedCreateInput;
 };
@@ -94,20 +94,20 @@ async function up() {
 
   await prisma.productItem.createMany({
     data: [
-      generateProductItem({ productId: pizza1.id, pizzaType: 1, size: 20 }),
-      generateProductItem({ productId: pizza1.id, pizzaType: 2, size: 30 }),
-      generateProductItem({ productId: pizza1.id, pizzaType: 2, size: 40 }),
+      generateProductItem({ productId: pizza1.id, doughType: 1, size: 20 }),
+      generateProductItem({ productId: pizza1.id, doughType: 2, size: 30 }),
+      generateProductItem({ productId: pizza1.id, doughType: 2, size: 40 }),
 
-      generateProductItem({ productId: pizza2.id, pizzaType: 1, size: 20 }),
-      generateProductItem({ productId: pizza2.id, pizzaType: 1, size: 30 }),
-      generateProductItem({ productId: pizza2.id, pizzaType: 1, size: 40 }),
-      generateProductItem({ productId: pizza2.id, pizzaType: 2, size: 20 }),
-      generateProductItem({ productId: pizza2.id, pizzaType: 2, size: 30 }),
-      generateProductItem({ productId: pizza2.id, pizzaType: 2, size: 40 }),
+      generateProductItem({ productId: pizza2.id, doughType: 1, size: 20 }),
+      generateProductItem({ productId: pizza2.id, doughType: 1, size: 30 }),
+      generateProductItem({ productId: pizza2.id, doughType: 1, size: 40 }),
+      generateProductItem({ productId: pizza2.id, doughType: 2, size: 20 }),
+      generateProductItem({ productId: pizza2.id, doughType: 2, size: 30 }),
+      generateProductItem({ productId: pizza2.id, doughType: 2, size: 40 }),
 
-      generateProductItem({ productId: pizza3.id, pizzaType: 1, size: 20 }),
-      generateProductItem({ productId: pizza3.id, pizzaType: 2, size: 30 }),
-      generateProductItem({ productId: pizza3.id, pizzaType: 2, size: 40 }),
+      generateProductItem({ productId: pizza3.id, doughType: 1, size: 20 }),
+      generateProductItem({ productId: pizza3.id, doughType: 2, size: 30 }),
+      generateProductItem({ productId: pizza3.id, doughType: 2, size: 40 }),
 
       generateProductItem({ productId: 1 }),
       generateProductItem({ productId: 2 }),

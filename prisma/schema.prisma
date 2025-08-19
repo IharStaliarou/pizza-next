@@ -57,7 +57,7 @@ model ProductItem {
 
   price     Int
   size      Int?
-  pizzaType Int?
+  doughType Int?
 
   cartItems CartItem[]
 

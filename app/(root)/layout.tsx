@@ -1,29 +1,25 @@
 import type { Metadata } from 'next';
-import { Nunito } from 'next/font/google';
-import '../globals.css';
 import { Header } from '@/components/shared';
 
-const nunito = Nunito({
-  subsets: ['latin'],
-  variable: '--font-nunito',
-  weight: ['400', '500', '600', '700', '800', '900'],
-});
 export const metadata: Metadata = {
-  title: 'Pizza Next 🍕',
+  title: 'Pizza Next',
   description: 'Your favorite pizza store',
 };
 
-export default function RootLayout({
+export default function AppLayout({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode;
+  modal: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
-      <body className={nunito.className}>
+    <body>
+      <main className='min-h-screen'>
         <Header />
-        <main className='min-h-screen'>{children}</main>
-      </body>
-    </html>
+        {children}
+        {modal}
+      </main>
+    </body>
   );
 }

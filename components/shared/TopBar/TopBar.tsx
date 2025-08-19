@@ -3,12 +3,14 @@ import { SortPopup } from '../SortPopup/SortPopup';
 import { Categories } from '../Categories/Categories';
 import { cn } from '@/lib/utils';
 import { Container } from '../Container/Container';
+import { Category } from '@prisma/client';
 
 interface ITopBarProps {
+  categories: Category[];
   className?: string;
 }
 
-export const TopBar = ({ className }: ITopBarProps) => {
+export const TopBar = ({ categories, className }: ITopBarProps) => {
   return (
     <div
       className={cn(
@@ -17,7 +19,7 @@ export const TopBar = ({ className }: ITopBarProps) => {
       )}
     >
       <Container className='flex items-center justify-between'>
-        <Categories />
+        <Categories items={categories} />
         <SortPopup />
       </Container>
     </div>
