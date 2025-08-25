@@ -17,7 +17,7 @@ export const getPizzaDetails = (
       ingredients,
       selectedIngredients
     );
-    const textDetails = `${size} cm, ${mapDoughType[type]} pizza`;
+    const textDetails = `${size} cm, ${mapDoughType[type]} dough`;
 
     return { totalPrice, textDetails };
   }

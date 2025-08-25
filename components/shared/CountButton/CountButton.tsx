@@ -1,16 +1,20 @@
+'use client';
+
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { Minus, Plus } from 'lucide-react';
-import { Button } from '@/components/ui';
+import { CountIconButton } from '../CountIconButton/CountIconButton';
+import { useCartStore } from '@/store';
 
-interface ICountButtonProps {
+export interface ICountButtonProps {
   value?: number;
   size?: 'sm' | 'lg';
+  onClick: (type: 'plus' | 'minus') => void;
   className?: string;
 }
 
 export const CountButton: React.FC<ICountButtonProps> = ({
   className,
+  onClick,
   value = 1,
   size = 'sm',
 }) => {
@@ -21,29 +25,18 @@ export const CountButton: React.FC<ICountButtonProps> = ({
         className
       )}
     >
-      <Button
-        variant='outline'
-        className={cn(
-          'p-0 hover:bg-primary hover:text-white',
-          size === 'sm'
-            ? 'w-[30px] h-[30px] rounded-sm'
-            : 'w-[38px] h-[38px] rounded-se-md'
-        )}
-      >
-        <Minus className={size === 'sm' ? 'h-4' : 'h-5'} />
-      </Button>
+      <CountIconButton
+        size={size}
+        onClick={() => onClick?.('minus')}
+        type='minus'
+        disabled={value === 1}
+      />
       <b className={size === 'sm' ? 'text-sm' : 'text-md'}>{value}</b>
-      <Button
-        variant='outline'
-        className={cn(
-          'p-0 hover:bg-primary hover:text-white',
-          size === 'sm'
-            ? 'w-[30px] h-[30px] rounded-sm'
-            : 'w-[38px] h-[38px] rounded-md'
-        )}
-      >
-        <Plus className={size === 'sm' ? 'h-4' : 'h-5'} />
-      </Button>
+      <CountIconButton
+        size={size}
+        onClick={() => onClick?.('plus')}
+        type='plus'
+      />
     </div>
   );
 };

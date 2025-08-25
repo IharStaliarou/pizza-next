@@ -1,0 +1,66 @@
+import { cn } from '@/lib/utils';
+import React from 'react';
+
+import * as CartItem from '../CartItemDetails';
+import { ICartItemProps } from '../CartItemDetails/CartItemDetails.types';
+import { CountButton } from '../CountButton/CountButton';
+import { Loader, Trash2Icon } from 'lucide-react';
+
+interface Props extends ICartItemProps {
+  onClickCountButton?: (type: 'plus' | 'minus') => void;
+  onClickRemove?: () => void;
+  className?: string;
+}
+
+export const CartDrawerItem: React.FC<Props> = ({
+  imageUrl,
+  name,
+  price,
+  quantity,
+  details,
+  disabled,
+  onClickCountButton,
+  onClickRemove,
+  className,
+}) => {
+  return (
+    <div className='relative'>
+      {disabled && (
+        <Loader className='top-1/2 left-1/2 absolute animate-spin' />
+      )}
+      <div
+        className={cn(
+          'flex bg-white p-5 gap-6',
+          {
+            'opacity-50 pointer-events-none': disabled,
+          },
+          className
+        )}
+      >
+        <CartItem.Image src={imageUrl} />
+
+        <div className='flex-1'>
+          <CartItem.Info name={name} details={details} />
+
+          <hr className='my-3' />
+
+          <div className='flex items-center justify-between'>
+            <CountButton
+              onClick={(type) => onClickCountButton?.(type)}
+              value={quantity}
+            />
+
+            <div className='flex items-center gap-3'>
+              <CartItem.Price value={price} />
+              <Trash2Icon
+                onClick={onClickRemove}
+                className='text-gray-400 cursor-pointer hover:text-gray-600'
+                size={16}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};

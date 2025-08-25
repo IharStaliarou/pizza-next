@@ -3,12 +3,14 @@
 import React from 'react';
 import { Ingredient, ProductItem } from '@prisma/client';
 
-import { PizzaImage } from '../PizzaImage/PizzaImage';
-import { Title } from '../Title/Title';
 import { Button } from '@/components/ui';
-import { VariantsGroup } from '../VariantsGroup/VariantsGroup';
+import {
+  VariantsGroup,
+  IngredientItem,
+  Title,
+  PizzaImage,
+} from '@/components/shared';
 import { PizzaSize, DoughType, doughTypes } from '@/constants/pizza';
-import { IngredientItem } from '../IngredientItem/IngredientItem';
 import { cn } from '@/lib/utils';
 import { getPizzaDetails } from '@/lib/getPizzaDetails';
 import { usePizzaOptions } from '@/hooks';

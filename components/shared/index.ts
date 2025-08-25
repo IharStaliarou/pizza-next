@@ -18,3 +18,4 @@ export * from './VariantsGroup/VariantsGroup';
 export * from './IngredientItem/IngredientItem';
 export * from './ProductForm/ProductForm';
 export * from './ChoosePizzaForm/ChoosePizzaForm';
+export * from './CartButton/CartButton';

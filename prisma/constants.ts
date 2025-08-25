@@ -125,13 +125,13 @@ export const products = [
   {
     name: 'Omelette with ham and mushrooms',
     imageUrl:
-      'https://media.dodostatic.net/image/r:292x292/11EE7970321044479C1D1085457A36EB.webp',
+      'https://media.dodostatic.net/image/r:292x292/0196ba50d552722fae7107777d1fbe8d.avif',
     categoryId: 2,
   },
   {
     name: 'Omelette with pepperoni',
     imageUrl:
-      'https://media.dodostatic.net/image/r:292x292/11EE94ECF33B0C46BA410DEC1B1DD6F8.webp',
+      'https://media.dodostatic.net/image/r:292x292/0196ba57d816700a88fe8ef8518a071a.avif',
     categoryId: 2,
   },
   {
@@ -149,7 +149,7 @@ export const products = [
   {
     name: 'Chicken nuggets',
     imageUrl:
-      'https://media.dodostatic.net/image/r:292x292/11EE7D618B5C7EC29350069AE9532C6E.webp',
+      'https://media.dodostatic.net/image/r:292x292/11eef4606aa1082aac57afbdd22de406.avif',
     categoryId: 3,
   },
   {
@@ -195,31 +195,31 @@ export const products = [
     categoryId: 4,
   },
   {
-    name: 'Irish Cappuccino',
+    name: 'Cappuccino',
     imageUrl:
-      'https://media.dodostatic.net/image/r:292x292/11EE7D61999EBDA59C10E216430A6093.webp',
+      'https://media.dodostatic.net/image/r:292x292/11ee7d5f22cf7f75aa4cd07e88c36e0c.avif',
     categoryId: 5,
   },
   {
-    name: 'Caramel cappuccino coffee',
+    name: 'Caramel cappuccino',
     imageUrl:
       'https://media.dodostatic.net/image/r:292x292/11EE7D61AED6B6D4BFDAD4E58D76CF56.webp',
     categoryId: 5,
   },
   {
-    name: 'Coconut latte coffee',
+    name: 'Coconut latte',
     imageUrl:
       'https://media.dodostatic.net/image/r:292x292/11EE7D61B19FA07090EE88B0ED347F42.webp',
     categoryId: 5,
   },
   {
-    name: 'Americano coffee',
+    name: 'Americano',
     imageUrl:
       'https://media.dodostatic.net/image/r:292x292/11EE7D61B044583596548A59078BBD33.webp',
     categoryId: 5,
   },
   {
-    name: 'Coffee Latte',
+    name: 'Latte',
     imageUrl:
       'https://media.dodostatic.net/image/r:292x292/11EE7D61B0C26A3F85D97A78FEEE00AD.webp',
     categoryId: 5,
