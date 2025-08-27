@@ -18,7 +18,6 @@ export const ProductForm: React.FC<Props> = ({
 }) => {
   const addCartItem = useCartStore((state) => state.addCartItem);
   const loading = useCartStore((state) => state.loading);
-
   const fetchCartItems = useCartStore((state) => state.fetchCartItems);
 
   React.useEffect(() => {

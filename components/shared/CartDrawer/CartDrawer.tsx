@@ -15,6 +15,7 @@ import { getCartItemDetails } from '@/lib/getCartItemDetails';
 import { useEffect } from 'react';
 import { useCartStore } from '@/store';
 import { DoughType, PizzaSize } from '@/constants/pizza';
+import { CartButton } from '../CartButton/CartButton';
 
 export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
   const {
@@ -28,7 +29,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
 
   useEffect(() => {
     fetchCartItems();
-  }, []);
+  }, [fetchCartItems]);
 
   const handleChangePizzaQuantity = (
     id: number,
@@ -41,7 +42,9 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
 
   return (
     <Sheet>
-      <SheetTrigger asChild>{children}</SheetTrigger>
+      <SheetTrigger>
+        <CartButton />
+      </SheetTrigger>
       <SheetContent className='flex flex-col justify-between pb-0 bg-[#F4F1EE]'>
         <SheetHeader>
           <SheetTitle>
@@ -53,10 +56,9 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
         </SheetHeader>
 
         <div className='-mx-6 mt-5 overflow-auto flex-1'>
-          <div className='mb-2'>
-            {items.map((item) => (
+          {items.map((item) => (
+            <div className='mb-2' key={item.id}>
               <CartDrawerItem
-                key={item.id}
                 id={item.id}
                 imageUrl={item.imageUrl}
                 details={
@@ -75,10 +77,10 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
                   handleChangePizzaQuantity(item.id, item.quantity, type)
                 }
                 onClickRemove={() => removeCartItem(item.id)}
-                disabled={loading}
+                disabled={item.disabled}
               />
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
 
         <SheetFooter className='-mx-6 bg-white p-8'>

@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { User } from 'lucide-react';
+import { Sheet, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui';
+import { Button, SheetTrigger } from '@/components/ui';
 import {
   CartDrawer,
   CartButton,
