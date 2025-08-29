@@ -1,7 +1,7 @@
 import React from 'react';
+import { ArrowUpDown } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
-import { ArrowUpDown } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui';
 
 interface ISortProps {

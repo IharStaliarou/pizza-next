@@ -1,6 +1,7 @@
+import React from 'react';
+
 import { Api } from '@/services/api.client';
 import { Ingredient } from '@prisma/client';
-import React from 'react';
 
 export const useIngredients = () => {
   const [loading, setLoading] = React.useState(true);

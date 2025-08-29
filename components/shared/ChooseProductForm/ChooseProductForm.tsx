@@ -1,9 +1,10 @@
-import { cn } from '@/lib/utils';
 import React from 'react';
+
 import { Title } from '../Title/Title';
 import { Button } from '@/components/ui';
+import { cn } from '@/lib/utils';
 
-interface Props {
+interface IChooseProductFormProps {
   imageUrl: string;
   name: string;
   price: number;
@@ -12,7 +13,7 @@ interface Props {
   className?: string;
 }
 
-export const ChooseProductForm: React.FC<Props> = ({
+export const ChooseProductForm: React.FC<IChooseProductFormProps> = ({
   name,
   imageUrl,
   price,

@@ -1,5 +1,6 @@
-import { cn } from '@/lib/utils';
 import React from 'react';
+
+import { cn } from '@/lib/utils';
 import { CountButton } from '../CountButton/CountButton';
 
 interface ICartItemProps {
@@ -31,6 +32,7 @@ export const CartItem: React.FC<ICartItemProps> = ({
         <hr className='my-3' />
 
         <div className='flex items-center justify-between'>
+          {/* TODO: fix error */}
           <CountButton value={count} />
 
           <h2 className='font-bold'>{price} ₽</h2>

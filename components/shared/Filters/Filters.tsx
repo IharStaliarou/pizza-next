@@ -1,12 +1,12 @@
 'use client';
 
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
 import { CheckboxFiltersGroup } from '../CheckboxFiltersGroup/CheckboxFiltersGroup';
 import { Title } from '../Title/Title';
 import { RangeSlider, Input } from '@/components/ui';
 import { useFilters, useQueryFilters, useIngredients } from '@/hooks';
-import { useRouter } from 'next/navigation';
 
 interface IFilterProps {
   className?: string;

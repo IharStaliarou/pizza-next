@@ -1,18 +1,19 @@
 'use client';
 
-import { ProductWithRelations } from '@/@types/prisma';
-import { useCartStore } from '@/store';
 import React from 'react';
 import toast from 'react-hot-toast';
+
+import { ProductWithRelations } from '@/@types/prisma';
+import { useCartStore } from '@/store';
 import { ChoosePizzaForm } from '../ChoosePizzaForm/ChoosePizzaForm';
 import { ChooseProductForm } from '../ChooseProductForm/ChooseProductForm';
 
-interface Props {
+interface IProductFormProps {
   product: ProductWithRelations;
   onSubmit?: VoidFunction;
 }
 
-export const ProductForm: React.FC<Props> = ({
+export const ProductForm: React.FC<IProductFormProps> = ({
   product,
   onSubmit: _onSubmit,
 }) => {

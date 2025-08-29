@@ -9,3 +9,4 @@ export * from './Skeleton/Skeleton';
 export * from './Slider/Slider';
 export * from './Sheet/Sheet';
 export * from './RangeSlider/RangeSlider';
+export * from './TextArea/TextArea';

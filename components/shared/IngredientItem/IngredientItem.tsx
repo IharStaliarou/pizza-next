@@ -1,8 +1,9 @@
-import { cn } from '@/lib/utils';
 import { CircleCheck } from 'lucide-react';
 import React from 'react';
 
-interface Props {
+import { cn } from '@/lib/utils';
+
+interface IIngredientItemProps {
   imageUrl: string;
   name: string;
   price: number;
@@ -11,7 +12,7 @@ interface Props {
   className?: string;
 }
 
-export const IngredientItem: React.FC<Props> = ({
+export const IngredientItem: React.FC<IIngredientItemProps> = ({
   className,
   active,
   price,

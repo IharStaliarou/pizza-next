@@ -1,10 +1,11 @@
 'use client';
 
 import React from 'react';
+import { useIntersection } from 'react-use';
+
 import { Title } from '../Title/Title';
 import { ProductCard } from '../ProductCard/ProductCard';
 import { cn } from '@/lib/utils';
-import { useIntersection } from 'react-use';
 import { useCategoryStore } from '@/store/category';
 import { ProductWithRelations } from '@/@types/prisma';
 

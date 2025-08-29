@@ -1,18 +1,22 @@
 'use client';
 
-import { Dialog, DialogContent } from '@/components/ui';
-import { cn } from '@/lib/utils';
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { ProductWithRelations } from '@/@types/prisma';
-import { ProductForm } from '../../ProductForm/ProductForm';
 
-interface Props {
+import { Dialog, DialogContent } from '@/components/ui';
+import { ProductForm } from '../../ProductForm/ProductForm';
+import { cn } from '@/lib/utils';
+import { ProductWithRelations } from '@/@types/prisma';
+
+interface IChooseProductModalProps {
   product: ProductWithRelations;
   className?: string;
 }
 
-export const ChooseProductModal: React.FC<Props> = ({ product, className }) => {
+export const ChooseProductModal: React.FC<IChooseProductModalProps> = ({
+  product,
+  className,
+}) => {
   const router = useRouter();
 
   return (

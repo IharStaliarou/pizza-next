@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
+
 import { cn } from '@/lib/utils';
 import { CountIconButton } from '../CountIconButton/CountIconButton';
-import { useCartStore } from '@/store';
 
 export interface ICountButtonProps {
   value?: number;

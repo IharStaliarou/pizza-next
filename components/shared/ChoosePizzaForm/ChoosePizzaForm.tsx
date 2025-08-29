@@ -15,7 +15,7 @@ import { cn } from '@/lib/utils';
 import { getPizzaDetails } from '@/lib/getPizzaDetails';
 import { usePizzaOptions } from '@/hooks';
 
-interface Props {
+interface IChoosePizzaFormProps {
   imageUrl: string;
   name: string;
   ingredients: Ingredient[];
@@ -25,7 +25,7 @@ interface Props {
   className?: string;
 }
 
-export const ChoosePizzaForm: React.FC<Props> = ({
+export const ChoosePizzaForm: React.FC<IChoosePizzaFormProps> = ({
   name,
   items,
   imageUrl,

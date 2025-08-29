@@ -1,9 +1,10 @@
 import React from 'react';
+import { Category } from '@prisma/client';
+
 import { SortPopup } from '../SortPopup/SortPopup';
 import { Categories } from '../Categories/Categories';
 import { cn } from '@/lib/utils';
 import { Container } from '../Container/Container';
-import { Category } from '@prisma/client';
 
 interface ITopBarProps {
   categories: Category[];

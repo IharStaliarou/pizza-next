@@ -1,14 +1,12 @@
 'use client';
 
 import React from 'react';
-import { useSet } from 'react-use';
 
 import {
   FilterCheckbox,
   IFilterCheckboxProps,
 } from '../FiltersCheckbox/FiltersCheckbox';
 import { Input, Skeleton } from '@/components/ui';
-import { on } from 'events';
 
 type Item = IFilterCheckboxProps;
 

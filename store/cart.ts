@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+
 import { Api } from '@/services/api.client';
 import { getCartDetails } from '@/lib/getCartDetails';
 import { CartStateItem } from '@/lib/getCartDetails';

@@ -1,12 +1,13 @@
 'use client';
 
-import { cn } from '@/lib/utils';
-import { Api } from '@/services/api.client';
 import { Product } from '@prisma/client';
 import { Search } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 import { useClickAway, useDebounce } from 'react-use';
+
+import { cn } from '@/lib/utils';
+import { Api } from '@/services/api.client';
 
 interface ISearchInputProps {
   className?: string;
@@ -58,7 +59,7 @@ export const SearchInput: React.FC<ISearchInputProps> = ({ className }) => {
         <input
           className='rounded-2xl outline-none w-full bg-gray-100 pl-11'
           type='text'
-          placeholder='Найти пиццу...'
+          placeholder='Search...'
           onFocus={() => setFocused(true)}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}

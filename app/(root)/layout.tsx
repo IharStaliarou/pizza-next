@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+
 import { Header } from '@/components/shared';
 
 export const metadata: Metadata = {
@@ -16,7 +17,7 @@ export default function AppLayout({
   return (
     <body>
       <main className='min-h-screen'>
-        <Header />
+        <Header hasCart />
         {children}
         {modal}
       </main>
