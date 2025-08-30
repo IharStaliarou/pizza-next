@@ -9,6 +9,7 @@ interface ICartItemProps {
   price?: number;
   className?: string;
   count?: number;
+  onClickCountButton?: (type: 'plus' | 'minus') => void;
 }
 
 export const CartItem: React.FC<ICartItemProps> = ({
@@ -16,6 +17,7 @@ export const CartItem: React.FC<ICartItemProps> = ({
   name,
   price,
   count,
+  onClickCountButton,
   className,
 }) => {
   return (
@@ -32,8 +34,10 @@ export const CartItem: React.FC<ICartItemProps> = ({
         <hr className='my-3' />
 
         <div className='flex items-center justify-between'>
-          {/* TODO: fix error */}
-          <CountButton value={count} />
+          <CountButton
+            onClick={(type) => onClickCountButton?.(type)}
+            value={count}
+          />
 
           <h2 className='font-bold'>{price} ₽</h2>
         </div>

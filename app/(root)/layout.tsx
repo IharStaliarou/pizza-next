@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 import { Header } from '@/components/shared';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'Pizza Next',
@@ -15,12 +16,12 @@ export default function AppLayout({
   modal: React.ReactNode;
 }>) {
   return (
-    <body>
-      <main className='min-h-screen'>
+    <main className='min-h-screen'>
+      <Suspense>
         <Header hasCart />
-        {children}
-        {modal}
-      </main>
-    </body>
+      </Suspense>
+      {children}
+      {modal}
+    </main>
   );
 }

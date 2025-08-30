@@ -37,7 +37,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
 
   return (
     <Sheet>
-      <SheetTrigger>{children}</SheetTrigger>
+      <SheetTrigger asChild>{children}</SheetTrigger>
       <SheetContent className='flex flex-col justify-between pb-0 bg-[#F4F1EE]'>
         <div
           className={cn(
@@ -48,10 +48,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
           {totalAmount > 0 && (
             <SheetHeader>
               <SheetTitle>
-                Cart:{' '}
-                <span className='font-bold'>
-                  {items.reduce((a, b) => a + b.quantity, 0)} items
-                </span>
+                Cart: <span className='font-bold'>{items.length} items</span>
               </SheetTitle>
             </SheetHeader>
           )}

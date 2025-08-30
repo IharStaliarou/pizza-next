@@ -3,12 +3,8 @@
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
-import {
-  WhiteBlock,
-  FormTextarea,
-  AddressInput,
-  ErrorText,
-} from '@/components/shared';
+import { WhiteBlock, FormTextarea, ErrorText } from '@/components/shared';
+import { AddressInput } from '../AddressInput/AddressInput';
 
 interface ICheckoutAddressFormProps {
   className?: string;

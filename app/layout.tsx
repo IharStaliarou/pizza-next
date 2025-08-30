@@ -1,7 +1,7 @@
 import { Nunito } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 
-import { Providers } from '@/components/shared';
+import { Providers } from '@/components/shared/Providers/Providers';
 import './globals.css';
 
 const nunito = Nunito({

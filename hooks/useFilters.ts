@@ -64,14 +64,17 @@ export const useFilters = (): IReturnProps => {
     setPrices((prev) => ({ ...prev, [name]: value }));
   };
 
-  return {
-    sizes,
-    prices,
-    doughTypes,
-    selectedIngredients,
-    setPrices: handleUpdatePrice,
-    setSizes: toggleSize,
-    setIngredientTypes: toggleIngredients,
-    setDoughTypes: toggleDoughType,
-  };
+  return React.useMemo(
+    () => ({
+      sizes,
+      prices,
+      doughTypes,
+      selectedIngredients,
+      setPrices: handleUpdatePrice,
+      setSizes: toggleSize,
+      setIngredientTypes: toggleIngredients,
+      setDoughTypes: toggleDoughType,
+    }),
+    [sizes, doughTypes, selectedIngredients, prices]
+  );
 };

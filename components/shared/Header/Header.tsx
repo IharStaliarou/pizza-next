@@ -8,7 +8,6 @@ import toast from 'react-hot-toast';
 
 import { cn } from '@/lib/utils';
 import {
-  CartDrawer,
   CartButton,
   SearchInput,
   Container,
@@ -35,7 +34,7 @@ export const Header = ({ hasCart, hasSearch, className }: IHeaderProps) => {
       message = 'Your account has been verified';
     }
 
-    if (searchParams.has('paid')) {
+    if (searchParams.has('paid/')) {
       message = 'Your order has been paid! Details send to your email';
     }
 
@@ -75,11 +74,7 @@ export const Header = ({ hasCart, hasSearch, className }: IHeaderProps) => {
             open={openAuthModal}
             onClose={() => setOpenAuthModal(false)}
           />
-          {hasCart && (
-            <CartDrawer>
-              <CartButton />
-            </CartDrawer>
-          )}
+          {hasCart && <CartButton />}
         </div>
       </Container>
     </header>

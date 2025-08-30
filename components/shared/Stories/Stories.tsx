@@ -34,7 +34,6 @@ export const Stories: React.FC<Props> = ({ className }) => {
       setOpen(true);
     }
   };
-  // TODO: translate stories to english
   return (
     <>
       <Container
@@ -47,18 +46,17 @@ export const Stories: React.FC<Props> = ({ className }) => {
           [...Array(6)].map((_, index) => (
             <div
               key={index}
-              className='w-[200px] h-[250px] bg-gray-200 rounded-md animate-pulse'
+              className='w-[200px] h-[300px] bg-gray-200 rounded-md animate-pulse'
             />
           ))}
 
-        {stories.map((story) => (
+        {stories.map((story, i) => (
           <img
             key={story.id}
             onClick={() => onClickStory(story)}
             className='rounded-md cursor-pointer'
-            height={250}
-            width={200}
             src={story.previewImageUrl}
+            style={{ objectFit: 'cover', height: 300, width: 200 }}
           />
         ))}
 
@@ -75,13 +73,18 @@ export const Stories: React.FC<Props> = ({ className }) => {
               <ReactStories
                 onAllStoriesEnd={() => setOpen(false)}
                 stories={
-                  selectedStory?.items.map((item) => ({
+                  selectedStory?.items.map((item, i) => ({
                     url: item.sourceUrl,
                   })) || []
                 }
                 defaultInterval={3000}
                 width={520}
                 height={800}
+                storyStyles={{
+                  width: 520,
+                  height: 800,
+                  objectFit: 'cover',
+                }}
               />
             </div>
           </div>

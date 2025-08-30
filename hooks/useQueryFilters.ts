@@ -1,32 +1,31 @@
 import React from 'react';
-import QueryString from 'qs';
-import { useRouter } from 'next/navigation';
-
 import { IFiltersProps } from './useFilters';
+import qs from 'qs';
+import { useRouter } from 'next/navigation';
+import { doughTypes } from '@/constants';
 
-export const useQueryFilters = ({
-  sizes,
-  prices,
-  doughTypes,
-  selectedIngredients,
-}: IFiltersProps) => {
-  const router = useRouter();
+export const useQueryFilters = (filters: IFiltersProps) => {
   const isMounted = React.useRef(false);
+  const router = useRouter();
 
-  if (isMounted.current) {
-    React.useEffect(() => {
+  React.useEffect(() => {
+    if (isMounted.current) {
       const params = {
-        ...prices,
-        doughTypes: Array.from(doughTypes),
-        sizes: Array.from(sizes),
-        ingredients: Array.from(selectedIngredients),
+        ...filters.prices,
+        doughTypes: Array.from(filters.doughTypes),
+        sizes: Array.from(filters.sizes),
+        ingredients: Array.from(filters.selectedIngredients),
       };
 
-      const qs = QueryString.stringify(params, { arrayFormat: 'comma' });
+      const query = qs.stringify(params, {
+        arrayFormat: 'comma',
+      });
 
-      router.push(`?${qs}`, {
+      router.push(`?${query}`, {
         scroll: false,
       });
-    }, [router, prices, doughTypes, sizes, selectedIngredients]);
-  }
+    }
+
+    isMounted.current = true;
+  }, [filters]);
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import { ProductItem } from '@prisma/client';
 import { useSet } from 'react-use';
 
-import { Variant } from '@/components/shared';
+import { Variant } from '@/components/shared/VariantsGroup/VariantsGroup';
 import { getAvailablePizzaSizes } from '@/lib/getAvailablePizzaSizes';
 import { PizzaSize, DoughType } from '@/constants/pizza';
 

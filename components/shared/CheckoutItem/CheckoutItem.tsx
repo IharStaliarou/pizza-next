@@ -42,9 +42,8 @@ export const CheckoutItem: React.FC<ICheckoutItemProps> = ({
       <CartItemDetails.Price value={price} />
 
       <div className='flex items-center gap-5 ml-20'>
-        {/* TODO: fix error */}
         <CartItemDetails.CountButton
-          onClick={onClickCountButton}
+          onClick={(type) => onClickCountButton?.(type)}
           value={quantity}
         />
         <button type='button' onClick={onClickRemove}>

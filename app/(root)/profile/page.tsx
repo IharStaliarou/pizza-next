@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 
-import { ProfileForm } from '@/components/shared';
+import { ProfileForm } from '@/components/shared/ProfileForm/ProfileForm';
 import { getUserSession } from '@/lib/getUserSession';
 import { prisma } from '@/prisma/prisma-client';
 
