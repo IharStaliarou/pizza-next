@@ -41,6 +41,7 @@ export default async function Home({
                   category.products.length > 0 && (
                     <ProductsGroupList
                       key={category.id}
+                      id={`category-${category.id}`}
                       title={category.name}
                       categoryId={category.id}
                       items={category.products}

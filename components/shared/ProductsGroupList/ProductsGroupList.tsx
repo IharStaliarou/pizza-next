@@ -15,6 +15,7 @@ interface IProductsGroupListProps {
   categoryId: number;
   className?: string;
   listClassName?: string;
+  id?: string;
 }
 
 export const ProductsGroupList: React.FC<IProductsGroupListProps> = ({
@@ -23,6 +24,7 @@ export const ProductsGroupList: React.FC<IProductsGroupListProps> = ({
   listClassName,
   categoryId,
   className,
+  id,
 }) => {
   const { setActiveId } = useCategoryStore((state) => state);
   const intersectionRef = React.useRef(null);
@@ -34,10 +36,14 @@ export const ProductsGroupList: React.FC<IProductsGroupListProps> = ({
     if (intersection?.isIntersecting) {
       setActiveId(categoryId);
     }
-  }, [categoryId, intersection?.isIntersecting, title]);
+  }, [categoryId, intersection?.isIntersecting, title, setActiveId]);
 
   return (
-    <div className={className} id={title} ref={intersectionRef}>
+    <section
+      className={cn('pt-[100px] mt-[-100px]', className)}
+      ref={intersectionRef}
+      id={id}
+    >
       <Title text={title} size='lg' className='font-extrabold mb-5' />
 
       <div className={cn('grid grid-cols-3 gap-[50px]', listClassName)}>
@@ -52,6 +58,6 @@ export const ProductsGroupList: React.FC<IProductsGroupListProps> = ({
           />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
