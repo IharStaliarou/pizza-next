@@ -10,15 +10,15 @@ import { UserRole } from '@prisma/client';
 export const authOptions: AuthOptions = {
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || '',
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
     GitHubProvider({
-      clientId: process.env.GITHUB_ID || '',
-      clientSecret: process.env.GITHUB_SECRET || '',
+      clientId: process.env.GITHUB_ID!,
+      clientSecret: process.env.GITHUB_SECRET!,
       profile(profile) {
         return {
-          id: profile.id,
+          id: profile.id.toString(),
           name: profile.name || profile.login,
           email: profile.email,
           image: profile.avatar_url,
@@ -33,41 +33,38 @@ export const authOptions: AuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        if (!credentials) {
+        if (!credentials?.email || !credentials?.password) {
           return null;
         }
 
-        const values = {
-          email: credentials.email,
-        };
+        try {
+          const findUser = await prisma.user.findFirst({
+            where: { email: credentials.email },
+          });
 
-        const findUser = await prisma.user.findFirst({
-          where: values,
-        });
+          if (!findUser) {
+            return null;
+          }
 
-        if (!findUser) {
+          const isPasswordValid = await compare(
+            credentials.password,
+            findUser.password
+          );
+
+          if (!isPasswordValid || !findUser.verified) {
+            return null;
+          }
+
+          return {
+            id: findUser.id,
+            email: findUser.email,
+            name: findUser.fullName,
+            role: findUser.role,
+          };
+        } catch (error) {
+          console.error('Auth error:', error);
           return null;
         }
-
-        const isPasswordValid = await compare(
-          credentials.password,
-          findUser.password
-        );
-
-        if (!isPasswordValid) {
-          return null;
-        }
-
-        if (!findUser.verified) {
-          return null;
-        }
-
-        return {
-          id: findUser.id,
-          email: findUser.email,
-          name: findUser.fullName,
-          role: findUser.role,
-        };
       },
     }),
   ],
@@ -76,7 +73,7 @@ export const authOptions: AuthOptions = {
     strategy: 'jwt',
   },
   callbacks: {
-    async signIn({ user, account }) {
+    async signIn({ user, account, profile }) {
       try {
         if (account?.provider === 'credentials') {
           return true;
@@ -89,11 +86,13 @@ export const authOptions: AuthOptions = {
         const findUser = await prisma.user.findFirst({
           where: {
             OR: [
-              {
-                provider: account?.provider,
-                providerId: account?.providerAccountId,
-              },
               { email: user.email },
+              {
+                AND: [
+                  { provider: account?.provider },
+                  { providerId: account?.providerAccountId },
+                ],
+              },
             ],
           },
         });
@@ -120,6 +119,7 @@ export const authOptions: AuthOptions = {
             verified: new Date(),
             provider: account?.provider,
             providerId: account?.providerAccountId,
+            role: 'USER',
           },
         });
 
@@ -157,5 +157,9 @@ export const authOptions: AuthOptions = {
 
       return session;
     },
+  },
+  pages: {
+    signIn: '/auth/signin',
+    error: '/auth/error',
   },
 };
